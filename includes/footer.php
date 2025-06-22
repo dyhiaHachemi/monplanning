@@ -12,6 +12,7 @@
             background-color: #4482BB;
             color: white;
             text-align: center;
+            padding: 10px;
         }
     </style>
 </head>
