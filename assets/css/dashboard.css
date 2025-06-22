@@ -1,0 +1,52 @@
+main {
+    margin-top: 100px;
+    padding: 0 20px 100px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h1{
+    text-align: center;
+}
+.task-card {
+  background-color: #E5CEE0;
+  padding: 15px;
+  border-radius: 10px;
+  margin: 10px 0;
+  box-shadow: 0 2px 4px #E5CEE0;
+}
+
+.task-header {
+  font-size: 1.1em;
+  margin-bottom: 5px;
+}
+
+.task-info, .task-desc, .task-points {
+  font-size: 0.9em;
+  color: #555;
+  margin: 3px 0;
+}
+
+.categorie {
+  color: white;
+  padding: 3px 6px;
+  border-radius: 5px;
+  font-size: 0.9em;
+}
+
+#Spiritualite{
+  background-color: #A15D98;
+}
+
+#Etudes{
+  background-color: #4482BB;
+}
+
+#langue{
+  background-color: #84A6D6;
+}
+input[type="checkbox"] {
+  margin-right: 10px;
+  transform: scale(1.2);
+}
