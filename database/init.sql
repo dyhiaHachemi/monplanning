@@ -7,8 +7,9 @@ create table tache_recurrente (
     description_tache TEXT,
     jours varchar(20) NOT NULL, 
     heure TIME, 
-    categorie varchar(50), 
-    points int DEFAULT 0
+    id_categorie int, 
+    points int DEFAULT 0,
+    FOREIGN KEY (id_categorie) REFERENCES categorie(id_categorie)
  );
 -- Table : tache_ponctuelle
 create table tache_ponctuelle (
@@ -16,8 +17,9 @@ create table tache_ponctuelle (
     titre varchar(255) NOT NULL,
     date_tache date NOT NULL, 
     heure_tache TIME, 
-    categorie varchar(50), 
-    points int DEFAULT 0
+    id_categorie int, 
+    points int DEFAULT 0,
+    FOREIGN KEY (id_categorie) REFERENCES categorie(id_categorie)
  );
 
 -- Table : tache_realisee
@@ -44,3 +46,19 @@ create table niveau (
     seuil_points int not null, 
     titre varchar(50)
  );
+
+ -- Table : categorie
+CREATE TABLE categorie (
+    id_categorie INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(50) NOT NULL,
+    couleur VARCHAR(7), -- format HEX : #AABBCC
+    icone VARCHAR(100) -- classe Font Awesome ou emoji
+);
+
+-- Insertion des catégories prédéfinies
+INSERT INTO categorie (nom, couleur, icone) VALUES
+('Etudes', '#4482BB', 'fa-solid fa-school'),
+('Spiritualité', '#A15D98', 'fa-solid fa-mosque'),
+('Langue', '#84A6D6', 'fa-solid fa-language'),
+('Maison', '#E5CEE0', 'fa-solid fa-broom'),
+('Loisirs', '#F4E285', 'fa-solid fa-gamepad');
