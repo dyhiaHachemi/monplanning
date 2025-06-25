@@ -1,0 +1,54 @@
+main {
+    margin-top: 90px;
+    padding: 0 20px 100px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+h1{
+    text-align: center;
+}
+form{
+    border: 1px solid #E5CEE0;
+    background-color: #E5CEE0;
+    box-shadow: 0 2px 4px #E5CEE0;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+
+#ajouterBtn{
+    margin-left: 35%;
+    width: max-content;
+    background-color: white;
+    border: 2px solid #4482BB;
+    font-weight: bold;
+    border-radius: 10px;
+    color: #4482BB;
+    font-size: large;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+#ajouterBtn:hover{
+    background-color: #4482BB;
+    color: white;
+}
+
+label, option{
+    color: #4482BB;
+    font-weight: bold;
+}
+
+input , textarea , select{
+    background-color: white;
+    border: solid 2px #4482BB;
+    border-radius:10px;
+    padding: 5px;
+    margin-top: 5px;
+}
