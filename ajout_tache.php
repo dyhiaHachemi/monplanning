@@ -38,7 +38,7 @@
             $conn -> close ();
         }
     }  else {
-        echo " Tous les champs obligatoires doivent etre remplis";
+        echo "<script> alert ('Tous les champs obligatoires doivent etre remplis'); </script>";
     }
   
 ?>
@@ -98,7 +98,7 @@
 
             <label for="points" id="pointsLabel">Points :</label>
             <br>
-            <input type="number" name="points" value="0">
+            <input type="number" name="points" value="0" min="0">
             <br>
 
             <input type="submit" id="ajouterBtn" value="Ajouter la tache">

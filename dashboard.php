@@ -1,3 +1,5 @@
+<?php include("includes/db.php"); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,95 +13,70 @@
 <body>
     <?php include("includes/header.php"); ?>
     <main>
-        <h1>Liste des taches</h1>
-        <div class="task-card">
-            <input type="checkbox" id="tache1">
-            <label for="tache1">
+        <h1>Liste des taches pour aujourd'hui</h1>
+        <?php
+            // Obtenir le jour actuel (ex: "Mon", "Tue", ...)
+            $jour_court = date("D");
+            // Correspondance en français
+            $jours_fr = [
+                "Sun" => "Dim",
+                "Mon" => "Lun",
+                "Tue" => "Mar",
+                "Wed" => "Mer",
+                "Thu" => "Jeu",
+                "Fri" => "Ven",
+                "Sat" => "Sam"
+            ];
+            // Convertir le jour actuel en français
+            $jour_aujourdhui = $jours_fr[$jour_court];
+
+            $result = $conn->query("
+                SELECT tr.*, c.nom AS nom_categorie, c.couleur, c.icone
+                FROM tache_recurrente tr
+                JOIN categorie c ON tr.id_categorie = c.id_categorie
+            ");
+
+            if ($result->num_rows > 0){
+                while ($row = $result->fetch_assoc()) {
+                    $jours = explode(",", $row['jours']); // reccuperer les jours ex: ['Lun','Mar','Mer']
+                    // Affiche uniquement si le jour correspond à aujourd'hui
+                    if (in_array($jour_aujourdhui, $jours)) {
+                        $titre = $row['titre'];
+        ?>
+        <div class="task-card" >
+            <input type="checkbox" id="tache<?= $row['id_tache_recurrente']; ?>">
+            <label for="tache<?= $row['id_tache_recurrente']; ?>">
                 <div class="task-header">
-                    <strong>Prière du fadjr</strong> 
+                    <strong>
+                        <?php echo $titre ?>
+                    </strong> 
                     — 
-                    <span class="categorie" id="Spiritualite">
-                        <i class="fa-solid fa-mosque icon"></i>
-                        Spiritualité
+                    <!-- Affichage de la categorie selon son ID-->
+                    <span class="categorie" style="background-color: <?= $row['couleur']; ?>">
+                        <i class="fa-solid <?= $row['icone']; ?>"></i>
+                        <?= $row['nom_categorie']; ?>
                     </span>
                 </div>
                 <div class="task-info">
-                    <span class="heure">03:30</span> | <span class="jours">Tous les jours</span>
+                    <span class="heure"> <?php echo $heure = $row['heure'] ?></span> 
+                    | 
+                    <span class="jours"><?php echo $jours = $row['jours'] ?></span>
                 </div>
                 <div class="task-desc">
-                    <p>Effectuer la prière à l’heure avec les adhkar du matin et des prières supplémentaires si c'est possible.</p>
+                    <p> <?php echo $description_tache = $row['description_tache'] ?> </p>
                 </div>
                 <div class="task-points">
-                    <strong>5 points</strong>
+                    <strong><?php echo $points = $row['points'] ?> </strong>
                 </div>
             </label>
         </div>
-        <div class="task-card">
-            <input type="checkbox" id="tache2">
-            <label for="tache2">
-                <div class="task-header">
-                    <strong>Cours informatique IA</strong> 
-                    — 
-                    <span class="categorie" id="Etudes">
-                        <i class="fa-solid fa-school icon"></i>
-                        Informatique
-                    </span>
-                </div>
-                <div class="task-info">
-                    <span class="heure">09:30</span> | <span class="jours">Lun Jeu</span>
-                </div>
-                <div class="task-desc">
-                    <p>jhhjhjhfjhjhjhjhjhjhfgfgfgfgjh</p>
-                </div>
-                <div class="task-points">
-                    <strong>5 points</strong>
-                </div>
-            </label>
-        </div>
-        <div class="task-card">
-            <input type="checkbox" id="tache3">
-            <label for="tache3">
-                <div class="task-header">
-                    <strong>cours d'anglais</strong> 
-                    — 
-                    <span class="categorie" id="langue">
-                        <i class="fa-solid fa-language"></i>
-                        Langue
-                    </span>
-                </div>
-                <div class="task-info">
-                    <span class="heure">14:30</span> | <span class="jours">Dim Mer</span>
-                </div>
-                <div class="task-desc">
-                    <p>jhjhjhjhgfgfgsdsdertyijejh</p>
-                </div>
-                <div class="task-points">
-                    <strong>3 points</strong>
-                </div>
-            </label>
-        </div>
-        <div class="task-card">
-            <input type="checkbox" id="tache4">
-            <label for="tache4">
-                <div class="task-header">
-                    <strong>cours d'anglais</strong> 
-                    — 
-                    <span class="categorie" id="langue">
-                        <i class="fa-solid fa-language"></i>
-                        Langue
-                    </span>
-                </div>
-                <div class="task-info">
-                    <span class="heure">18:30</span> | <span class="jours">Ven</span>
-                </div>
-                <div class="task-desc">
-                    <p>jhjhjhjhgfgfgsdsdertyijejh</p>
-                </div>
-                <div class="task-points">
-                    <strong>3 points</strong>
-                </div>
-            </label>
-        </div>
+        <?php 
+                
+            }}} else {
+                echo "<script> alert('Il n y a pas encore de tache'</script>";
+            }
+            $conn->close();
+        ?>
     </main>    
     <?php include("includes/footer.php"); ?>
 </body>
