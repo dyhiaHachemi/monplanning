@@ -50,3 +50,28 @@ input[type="checkbox"] {
   margin-right: 10px;
   transform: scale(1.2);
 }
+
+/* style des taches apres realisation */
+.task-card.done {
+  background-color: #d3f4d3; /* vert très clair */
+  opacity: 0.7;
+  transition: all 0.3s ease-in-out;
+}
+
+.task-card.done .task-header,
+.task-card.done .task-info,
+.task-card.done .task-desc,
+.task-card.done .task-points {
+  text-decoration: line-through;
+  color: #555;
+}
+
+.task-card.realisee {
+  opacity: 0.5;
+}
+.task-card.realisee label {
+  text-decoration: line-through;
+}
+
+
+

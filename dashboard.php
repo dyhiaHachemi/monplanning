@@ -17,6 +17,8 @@
         <?php
             // Obtenir le jour actuel (ex: "Mon", "Tue", ...)
             $jour_court = date("D");
+            $date_auj = date("Y-m-d");
+
             // Correspondance en français
             $jours_fr = [
                 "Sun" => "Dim",
@@ -27,9 +29,20 @@
                 "Fri" => "Ven",
                 "Sat" => "Sam"
             ];
-            // Convertir le jour actuel en français
             $jour_aujourdhui = $jours_fr[$jour_court];
 
+            // Récupérer les ID des tâches déjà réalisées aujourd’hui
+            $realisees = [];
+            $sql_real = $conn->prepare("SELECT id_tache FROM tache_realisee WHERE type_tache = 'recurrente' AND date_realisation = ?");
+            $sql_real->bind_param("s", $date_auj);
+            $sql_real->execute();
+            $res_real = $sql_real->get_result();
+            while ($row_real = $res_real->fetch_assoc()) {
+                $realisees[] = $row_real['id_tache'];
+            }
+            $sql_real->close();
+
+            // Récupérer les tâches récurrentes + catégories
             $result = $conn->query("
                 SELECT tr.*, c.nom AS nom_categorie, c.couleur, c.icone
                 FROM tache_recurrente tr
@@ -38,46 +51,50 @@
 
             if ($result->num_rows > 0){
                 while ($row = $result->fetch_assoc()) {
-                    $jours = explode(",", $row['jours']); // reccuperer les jours ex: ['Lun','Mar','Mer']
-                    // Affiche uniquement si le jour correspond à aujourd'hui
+                    $jours = explode(",", $row['jours']);
                     if (in_array($jour_aujourdhui, $jours)) {
-                        $titre = $row['titre'];
+                        $id_tache = $row['id_tache_recurrente'];
+                        $est_realisee = in_array($id_tache, $realisees);
         ?>
-        <div class="task-card" >
-            <input type="checkbox" id="tache<?= $row['id_tache_recurrente']; ?>">
-            <label for="tache<?= $row['id_tache_recurrente']; ?>">
+        <div class="task-card <?= $est_realisee ? 'realisee' : '' ?>">
+            <input 
+                type="checkbox" 
+                id="tache<?= $id_tache ?>" 
+                class="checkbox-tache" 
+                data-id="<?= $id_tache ?>" 
+                data-type="recurrente"
+                <?= $est_realisee ? 'checked' : '' ?>
+            >
+            <label for="tache<?= $id_tache ?>">
                 <div class="task-header">
-                    <strong>
-                        <?php echo $titre ?>
-                    </strong> 
-                    — 
-                    <!-- Affichage de la categorie selon son ID-->
+                    <strong><?= $row['titre'] ?></strong> — 
                     <span class="categorie" style="background-color: <?= $row['couleur']; ?>">
                         <i class="fa-solid <?= $row['icone']; ?>"></i>
                         <?= $row['nom_categorie']; ?>
                     </span>
                 </div>
                 <div class="task-info">
-                    <span class="heure"> <?php echo $heure = $row['heure'] ?></span> 
-                    | 
-                    <span class="jours"><?php echo $jours = $row['jours'] ?></span>
+                    <span class="heure"><?= $row['heure'] ?></span> | 
+                    <span class="jours"><?= $row['jours'] ?></span>
                 </div>
                 <div class="task-desc">
-                    <p> <?php echo $description_tache = $row['description_tache'] ?> </p>
+                    <p><?= $row['description_tache'] ?></p>
                 </div>
                 <div class="task-points">
-                    <strong><?php echo $points = $row['points'] ?> </strong>
+                    <strong><?= $row['points'] ?> points</strong>
                 </div>
             </label>
         </div>
         <?php 
-                
-            }}} else {
-                echo "<script> alert('Il n y a pas encore de tache'</script>";
+                    }
+                }
+            } else {
+                echo "<script>alert('Il n y a pas encore de tache');</script>";
             }
             $conn->close();
         ?>
     </main>    
     <?php include("includes/footer.php"); ?>
+    <script src="assets/js/enregistrer_realisation_tache.js"></script>
 </body>
 </html>
