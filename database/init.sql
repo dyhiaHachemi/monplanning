@@ -60,5 +60,5 @@ INSERT INTO categorie (nom, couleur, icone) VALUES
 ('Etudes', '#4482BB', 'fa-solid fa-school'),
 ('Spiritualité', '#A15D98', 'fa-solid fa-mosque'),
 ('Langue', '#84A6D6', 'fa-solid fa-language'),
-('Maison', '#E5CEE0', 'fa-solid fa-broom'),
+('Maison', '#DDF2F5', 'fa-solid fa-broom'),
 ('Loisirs', '#F4E285', 'fa-solid fa-gamepad');
