@@ -8,7 +8,7 @@
         $id_categorie = (int)$_POST['id_categorie'];
         $points = (int)$_POST['points'];
 
-    }
+    
     // verifier que tous les champs sont  remplis
     if ( !empty ($titre) &&  !empty ($description_tache) && !empty ($heure) && !empty ($id_categorie) && !empty ($points) && !empty ($jours)) {
 
@@ -28,7 +28,7 @@
             if ($stmt->execute()) {
                 // on reccupere tacheID de la tache nouvellement crée
                 $tacheID = $stmt -> insert_id;
-                echo "<script> alert ('Tache ajoutée avec succée'); </script>";
+                // echo "<script> alert ('Tache ajoutée avec succée'); </script>";
             } else {
                 echo "Erreur : " . $stmt->error; 
             }
@@ -40,7 +40,7 @@
     }  else {
         echo "<script> alert ('Tous les champs obligatoires doivent etre remplis'); </script>";
     }
-  
+}  
 ?>
 
 <!-- Formualire d'ajout d'une tache -->
@@ -66,7 +66,7 @@
 
             <label for="description" id="descriptionLabel">Description de la tache:</label>
             <br>
-            <textarea name="description" rows="3" cols="40"></textarea>
+            <textarea name="description" rows="3" cols="25"></textarea>
             <br>
         
             <label id="checkboxLabel">Jours :</label><br>
