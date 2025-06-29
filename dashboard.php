@@ -49,10 +49,21 @@
                 JOIN categorie c ON tr.id_categorie = c.id_categorie
             ");
 
+            // Tâches accomplies aujourd’hui
+            $stmt = $conn->prepare("SELECT COUNT(*) FROM tache_realisee WHERE type_tache = 'recurrente' AND date_realisation = ?");
+            $stmt->bind_param("s", $date_auj);
+            $stmt->execute();
+            $stmt->bind_result($tachesRealisees);
+            $stmt->fetch();
+            $stmt->close();
+            $conn->close();
+
             if ($result->num_rows > 0){
+                $totalTaches = 0;
                 while ($row = $result->fetch_assoc()) {
                     $jours = explode(",", $row['jours']);
                     if (in_array($jour_aujourdhui, $jours)) {
+                        $totalTaches++;
                         $id_tache = $row['id_tache_recurrente'];
                         $est_realisee = in_array($id_tache, $realisees);
         ?>
@@ -86,13 +97,29 @@
             </label>
         </div>
         <?php 
-                    }
                 }
-            } else {
-                echo "<script>alert('Il n y a pas encore de tache');</script>";
             }
-            $conn->close();
         ?>
+        <!-- Résumé de la journée ici -->
+        <div class="resume-jour">
+            <h2>Résumé de la journée</h2>
+            <p>
+                <i class="fa-solid fa-square-check"></i>
+                <?php echo $tachesRealisees; ?> / <?php echo $totalTaches; ?> tâches accomplies
+            </p>
+            <?php
+                // Calcul du taux de réussite
+                $taux = ($totalTaches > 0) ? round(($tachesRealisees / $totalTaches) * 100) : 0;
+            ?>
+            <p>Taux de réussite : <?php echo $taux; ?> %</p>
+        </div>
+
+        <?php
+        } else {
+            echo "<p style='text-align: center; margin-top: 20px;'>Aucune tâche prévue aujourd’hui.</p>";
+        }
+        ?>
+
     </main>    
     <?php include("includes/footer.php"); ?>
     <script src="assets/js/enregistrer_realisation_tache.js"></script>
