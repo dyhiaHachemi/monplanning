@@ -1,0 +1,28 @@
+.apropos-container {
+    max-width: 800px;
+    margin: 120px auto 60px;
+    padding: 30px;
+    background-color: #E5CEE0;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+.apropos-container h1 {
+    text-align: center;
+    color: #A15D98;
+    margin-bottom: 25px;
+}
+
+.apropos-container i {
+    margin-right: 8px;
+}
+
+.dev-note {
+    margin-top: 40px;
+    font-style: italic;
+    text-align: center;
+    color: #555;
+}
