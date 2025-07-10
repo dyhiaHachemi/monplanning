@@ -1,0 +1,58 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 30px;
+    margin: 0;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    color: black;
+}
+
+h1 i {
+    color: #A15D98;
+    margin-right: 10px;
+}
+
+#motivation {
+    font-size: 1.1em;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.btn-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.btn {
+    background-color: #4482BB;
+    color: white;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1em;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn:hover {
+    background-color: #36669a;
+    transform: translateY(-3px);
+}
+
+.btn i {
+    font-size: 1.2em;
+    color: #fff;
+}
