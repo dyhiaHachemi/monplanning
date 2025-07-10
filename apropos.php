@@ -26,7 +26,7 @@
 
 
         <p class="dev-note">
-            Réalisé avec ❤️ par Dyhia — Étudiante en informatique, passionnée par le web, le développement et l’amélioration personnelle.
+            Réalisé avec ❤️ par Dyhia Hachemi — Étudiante en informatique, passionnée par le web, le développement et l’amélioration personnelle.
         </p>
     </main>
 
