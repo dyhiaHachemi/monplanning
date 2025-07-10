@@ -85,3 +85,25 @@ L'application permet de :
 3. Démarrer WAMP et accéder à :
 
 http://localhost/mon-planning/index.php
+
+---
+## 🙋‍♀️ Réalisé par
+
+Dyhia Hachemi — Étudiante en informatique passionnée par l'organisation, le développement web et l’amélioration continue.
+
+---
+## 📝 Notes
+
+  Le projet peut évoluer avec des fonctionnalités supplémentaires comme :
+
+   * Tâches ponctuelles
+
+   * Vue calendrier
+
+   * Notifications locales
+
+   * Système de points et niveaux
+
+  Le code a été écrit pour être clair et pédagogique, dans le but d’apprentissage personnel.
+  
+  Tu peux bien sûr modifier la partie auteur ou ajouter ton lien GitHub si tu veux publier le projet.
