@@ -8,7 +8,7 @@
 </head>
 <body>
     <header>
-        <a href="/index.php" class="logo">Mon Planning</a>
+        <a href="/monplanning/index.php" class="logo">Mon Planning</a>
            
         <input type="checkbox" id="check">
         <label for="check" class="icons">
@@ -16,10 +16,10 @@
             <i class="fa-solid fa-x" id="close-icon"></i>
         </label>
         <nav class="navbar">
-            <a href="/index.php" style="--i:0;">Accueil</a>
-            <a href="/dashboard.php"style="--i:1;">Tâches</a>
-            <a href="/calendrier.php" style="--i:2;">Calendrier</a>
-            <a href="/evaluation.php" style="--i:3;">Évaluation</a>
+            <a href="/monplanning/index.php" style="--i:0;">Accueil</a>
+            <a href="/monplanning/dashboard.php"style="--i:1;">Tâches</a>
+            <a href="/monplanning/calendrier.php" style="--i:2;">Calendrier</a>
+            <a href="/monplanning/evaluation.php" style="--i:3;">Évaluation</a>
         </nav>
     </header>
 </body>
