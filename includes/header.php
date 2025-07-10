@@ -19,7 +19,6 @@
             <a href="/monplanning/index.php" style="--i:0;">Accueil</a>
             <a href="/monplanning/dashboard.php"style="--i:1;">Tâches</a>
             <a href="/monplanning/apropos.php" style="--i:2;">A propos</a>
-            <a href="/monplanning/evaluation.php" style="--i:3;">Évaluation</a>
         </nav>
     </header>
 </body>
