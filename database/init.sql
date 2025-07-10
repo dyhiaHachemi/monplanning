@@ -11,16 +11,6 @@ create table tache_recurrente (
     points int DEFAULT 0,
     FOREIGN KEY (id_categorie) REFERENCES categorie(id_categorie)
  );
--- Table : tache_ponctuelle
-create table tache_ponctuelle (
-    id_tache_ponctuelle int AUTO_INCREMENT PRIMARY KEY NOT NULL,
-    titre varchar(255) NOT NULL,
-    date_tache date NOT NULL, 
-    heure_tache TIME, 
-    id_categorie int, 
-    points int DEFAULT 0,
-    FOREIGN KEY (id_categorie) REFERENCES categorie(id_categorie)
- );
 
 -- Table : tache_realisee
 create table tache_realisee (
@@ -29,22 +19,6 @@ create table tache_realisee (
     type_tache ENUM('recurrente', 'ponctuelle') NOT NULL,
     date_realisation date NOT NULL, 
     accomplie boolean DEFAULT FALSE 
- );
-
--- Table : journal_hebdomadaire
-create table journal_hebdomadaire (
-    id int AUTO_INCREMENT PRIMARY KEY NOT NULL,
-    semaine varchar(10) NOT NULL,
-    total_points int DEFAULT 0, 
-    taux_succès float DEFAULT 0, 
-    date_eval date NOT NULL
- );
-
--- Table : niveau
-create table niveau (
-    niveau INT PRIMARY KEY,
-    seuil_points int not null, 
-    titre varchar(50)
  );
 
  -- Table : categorie
