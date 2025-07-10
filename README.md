@@ -106,4 +106,3 @@ Dyhia Hachemi — Étudiante en informatique passionnée par l'organisation, le 
 
   Le code a été écrit pour être clair et pédagogique, dans le but d’apprentissage personnel.
   
-  Tu peux bien sûr modifier la partie auteur ou ajouter ton lien GitHub si tu veux publier le projet.
