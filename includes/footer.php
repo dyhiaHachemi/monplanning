@@ -14,6 +14,9 @@
             text-align: center;
             padding: 10px;
         }
+        footer p{
+            color: white;
+        }
     </style>
 </head>
 <body>
